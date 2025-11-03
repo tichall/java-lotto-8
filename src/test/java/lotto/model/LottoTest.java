@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,5 +23,14 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+    }
+
+    @DisplayName("로또 번호를 오름차순으로 반환한다.")
+    @Test
+    void getNumbers() {
+        Lotto lotto = new Lotto(List.of(10, 1, 2, 18, 7, 28));
+        List<Integer> result = lotto.getSortedNumbers();
+
+        assertThat(result).isSorted();
     }
 }
