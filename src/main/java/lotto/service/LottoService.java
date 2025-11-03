@@ -19,6 +19,12 @@ public class LottoService {
         return lottoMachine.issue(calculateQuantity(price));
     }
 
+    public void validateBonusNumberDuplication(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
     public LottoResult calculateResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         LottoResult lottoResult = new LottoResult();
 

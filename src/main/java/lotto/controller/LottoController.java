@@ -14,6 +14,8 @@ public class LottoController {
     private final OutputView outputView;
     private final LottoService lottoService;
 
+    private List<Integer> winningNumbers;
+
     public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -45,6 +47,7 @@ public class LottoController {
         try {
             List<Integer> winningNumbers = InputParser.parseNumbers(inputView.readWinningNumbers());
             LottoValidator.validateLottoNumbers(winningNumbers);
+            this.winningNumbers = winningNumbers;
             return winningNumbers;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -56,6 +59,7 @@ public class LottoController {
         try {
             Integer bonusNumber = InputParser.parseNumber(inputView.readBonusNumber());
             LottoValidator.validateNumberInRange(bonusNumber);
+            lottoService.validateBonusNumberDuplication(bonusNumber, winningNumbers);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
