@@ -1,11 +1,16 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.ErrorMessage;
 
 public class LottoMachine {
+    private final NumberGenerator numberGenerator;
+
+    public LottoMachine(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
+    }
+
     public List<Lotto> issue(int money) {
         validateMoney(money);
         return issueMultiple(calculateQuantity(money));
@@ -20,18 +25,13 @@ public class LottoMachine {
     }
 
     private Lotto issueSingle() {
-        return new Lotto(generateNumbers());
-    }
+        List<Integer> numbers = numberGenerator.generateDistinctNumbers(
+                LottoConstants.NUMBER_COUNT.getValue(),
+                LottoConstants.MIN_NUMBER.getValue(),
+                LottoConstants.MAX_NUMBER.getValue()
+        );
 
-    private List<Integer> generateNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < LottoConstants.NUMBER_COUNT.getValue(); i++) {
-            Integer number = Randoms.pickNumberInRange(
-                    LottoConstants.MIN_NUMBER.getValue(),
-                    LottoConstants.MAX_NUMBER.getValue());
-            numbers.add(number);
-        }
-        return numbers;
+        return new Lotto(numbers);
     }
 
     private void validateMoney(int insertedMoney) {
