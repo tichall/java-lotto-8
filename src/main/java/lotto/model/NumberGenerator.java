@@ -23,7 +23,7 @@ public class NumberGenerator {
 
     private static void validateSize(int size, int min, int max) {
         if (size > (max - min + 1)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_SIZE_FOR_RANGE.getValue());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_SIZE_FOR_RANGE.getMessage());
         }
     }
 }

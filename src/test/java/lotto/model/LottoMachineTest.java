@@ -43,7 +43,7 @@ public class LottoMachineTest {
         void issue_예외_금액_음수() {
             assertThatThrownBy(() -> lottoMachine.issue(-1000))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.PRICE_MUST_BE_POSITIVE.getValue());
+                    .hasMessageContaining(ErrorMessage.PRICE_MUST_BE_POSITIVE.getMessage());
         }
 
         @ParameterizedTest
@@ -52,7 +52,7 @@ public class LottoMachineTest {
         void issue_예외_나누어_떨어지지_않는_금액(int money) {
             assertThatThrownBy(() -> lottoMachine.issue(money))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.INVALID_PRICE_UNIT.getValue());
+                    .hasMessageContaining(ErrorMessage.INVALID_PRICE_UNIT.getMessage());
         }
     }
 }

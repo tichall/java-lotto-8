@@ -71,6 +71,6 @@ public class NumberGeneratorTest {
 
         assertThatThrownBy(() -> numberGenerator.generateDistinctNumbers(size, min, max))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.INVALID_SIZE_FOR_RANGE.getValue());
+                .hasMessageContaining(ErrorMessage.INVALID_SIZE_FOR_RANGE.getMessage());
     }
 }

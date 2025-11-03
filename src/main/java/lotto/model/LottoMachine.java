@@ -36,7 +36,7 @@ public class LottoMachine {
 
     private void validateMoney(int insertedMoney) {
         if (insertedMoney <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.PRICE_MUST_BE_POSITIVE.getValue());
+            throw new IllegalArgumentException(ErrorMessage.PRICE_MUST_BE_POSITIVE.getMessage());
         }
     }
 
@@ -44,6 +44,6 @@ public class LottoMachine {
         if (money % LottoConstants.PRICE.getValue() == 0) {
             return money / LottoConstants.PRICE.getValue();
         }
-        throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE_UNIT.getValue());
+        throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE_UNIT.getMessage());
     }
 }

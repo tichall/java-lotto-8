@@ -14,7 +14,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.PARSE_INTEGER_ERROR.getValue());
+            throw new IllegalArgumentException(ErrorMessage.PARSE_INTEGER_ERROR.getMessage());
         }
     }
 }
