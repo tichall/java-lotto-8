@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.ErrorMessage;
 import lotto.Prompt;
 import lotto.model.Lotto;
 
