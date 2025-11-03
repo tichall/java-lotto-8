@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.ErrorMessage;
 import lotto.Prompt;
 import lotto.model.Lotto;
 
@@ -14,7 +15,11 @@ public class OutputView {
         }
     }
 
-    public void printSeperator() {
+    public void printErrorMessage(String message) {
+        System.out.println(Prompt.OUTPUT_ERROR_PREFIX + message);
+    }
+
+    private void printSeperator() {
         System.out.println();
     }
 }
