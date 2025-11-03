@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,10 +12,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumberCount(numbers);
+        validateDistinctNumber(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDistinctNumber(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != LottoConstants.NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
+        }
+    }
 }
