@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.service.LottoService;
 import lotto.utils.InputParser;
 import lotto.utils.LottoValidator;
@@ -25,11 +26,14 @@ public class LottoController {
 
         List<Integer> winningNumbers = setWinningNumbers();
         Integer bonusNumber = setBonusNumber();
+
+        LottoResult lottoResult = lottoService.calculateResult(lottos, winningNumbers, bonusNumber);
+        outputView.printWinningResult(lottoResult);
     }
 
     private List<Lotto> purchaseLottos() {
         try {
-            int price = inputView.readPurchasePrice();
+            int price = InputParser.parseNumber(inputView.readPurchasePrice());
             return lottoService.purchaseAndIssueLottos(price);
         } catch(IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

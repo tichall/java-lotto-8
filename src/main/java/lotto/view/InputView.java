@@ -5,9 +5,9 @@ import lotto.ErrorMessage;
 import lotto.Prompt;
 
 public class InputView {
-    public int readPurchasePrice() {
+    public String readPurchasePrice() {
         System.out.println(Prompt.INPUT_PURCHASE_AMOUNT.getValue());
-        return readInteger();
+        return Console.readLine();
     }
 
     public String readWinningNumbers() {

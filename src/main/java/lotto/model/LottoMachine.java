@@ -11,9 +11,8 @@ public class LottoMachine {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> issue(int money) {
-        validateMoney(money);
-        return issueMultiple(calculateQuantity(money));
+    public List<Lotto> issue(int amount) {
+        return issueMultiple(amount);
     }
 
     private List<Lotto> issueMultiple(int quantity) {
@@ -32,12 +31,6 @@ public class LottoMachine {
         );
 
         return new Lotto(numbers);
-    }
-
-    private void validateMoney(int insertedMoney) {
-        if (insertedMoney <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.PRICE_MUST_BE_POSITIVE.getMessage());
-        }
     }
 
     private int calculateQuantity(int money) {
