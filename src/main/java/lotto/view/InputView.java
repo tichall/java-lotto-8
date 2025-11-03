@@ -6,7 +6,7 @@ import lotto.Prompt;
 
 public class InputView {
     public int readPurchasePrice() {
-        System.out.println(Prompt.INPUT_PURCHASE_AMOUNT);
+        System.out.println(Prompt.INPUT_PURCHASE_AMOUNT.getValue());
         return readInteger();
     }
 
